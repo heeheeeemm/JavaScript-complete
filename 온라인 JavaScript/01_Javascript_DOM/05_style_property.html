@@ -1,0 +1,30 @@
+<!-- style_property.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>Lorem, ipsum dolor.</p>
+
+  <script>
+    // style 조작
+    // - style 프로퍼티는 HTML 태그에 style="..." 속성을 직접 쓰는 것과 같음
+    // - CSS 속성 이름은 카멜 케이스로 작성 (font-size -> fontSize)
+    // - 여러 스타일을 한 번에 바꿀 때는 클래스(classList)를 쓰는 것을 권장
+    const pTag = document.querySelector('p')
+
+    pTag.style.color = 'crimson'
+    pTag.style.fontSize = '2rem'
+    pTag.style.border = '1px solid black'
+
+    console.log(pTag.style) // CSSStyleDeclaration (지정한 color, fontSize, border 확인 가능)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">버튼</button>
+  <!-- span태그 왜쓸까?  -->
+  <!-- content의 일부만 바꾸고 싶을 때 span태그를 사용한다. -->
+  <p>클릭횟수 : <span id="counter">0</span></p>
+
+  <script>
+    // 1. 초기값 할당(let은 재할당 가능)
+
+    let counterNumber = 0
+
+    // 1. querySelector
+    const btn = document.querySelector('#btn')
+
+
+    // 2. 콜백 함수 
+    const clickHandler = function () {
+      // 2.1 초기값 += 1
+      counterNumber += 1
+
+      // 2.2 p 요소를 선택
+      const spanTag = document.querySelector('#counter')
+
+
+      // 2.3 p 요소의 컨텐츠를 1 증가한 초기값으로 설정
+      // 콘텐츠 조작
+      spanTag.textContent = counterNumber
+
+    }
+
+    // 3. 버튼에 이벤트 핸들러 부착
+    btn.addEventListener('click', clickHandler) 
+    
+
+  </script>
+</body>
+
+</html>

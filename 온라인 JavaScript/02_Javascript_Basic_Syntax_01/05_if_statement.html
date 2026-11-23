@@ -1,0 +1,37 @@
+<!-- if_statement.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. if 문
+    // - 조건식의 결과를 true/false로 바꾼 뒤 판단 (type_coercion.html의 규칙)
+    // - 비교는 === 를 사용
+    const name = 'customer'
+
+    if (name === 'admin') {
+      console.log('관리자님 환영해요')
+    } else if (name === 'customer') {
+      console.log('고객님 환영해요') // 실행됨
+    } else {
+      console.log(`반갑습니다. ${name}님`)
+    }
+
+    // 2. 삼항 연산자
+    // - 조건 ? 참일 때 값 : 거짓일 때 값
+    // - 조건이 2개가 넘어가면 가급적 if 문을 쓰자!
+    const age = 20
+    const message = (age >= 18) ? '성인' : '미성년자'
+    console.log(message) // '성인'
+
+  </script>
+</body>
+
+</html>

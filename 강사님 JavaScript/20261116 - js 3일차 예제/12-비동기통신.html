@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 비동기적 측면
+
+    console.log('1')
+
+
+    // 함수 안에 함수? // () => : 콜백 함수
+    setTimeout(() => {
+      console.log('2')
+    }, 5000)
+    
+    console.log('3')
+    
+    // 출력 결과
+    // a
+    // c
+    // b
+  </script>
+</body>
+
+</html>

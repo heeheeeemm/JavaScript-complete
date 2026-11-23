@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  // 1. while, 0부터 5까지 출력
+  // 초기식, 증감식, 조건식 (재할당이 이루어지니까 let)
+
+  let i = 0 // 초기식
+  while(i < 6){ // 조건식
+    console.log(i)
+    i++ // 증감식
+  }
+
+  // 2. for, 0부터 5까지 출력
+  // for(초기식; 조건식; 증감식)
+  for (let i = 0; i < 6; i++) {
+    console.log(i)
+  }
+
+
+  // 3. for...in, 3-1. a b 출력, 3-2. apple banana 출력
+  // python 딕셔너리 -> js 객체
+  // key, value -> 속성, 값
+  // for in은 속성(key)을 순회
+  const object = {
+    a: 'apple',
+    b: 'banana'
+  }
+
+  for (const property in object) {
+    console.log(property)
+  }
+
+
+  // 4. for...of, 4-1. 0 1 2 3 출력, 4-2. a p p l e 출력
+  // for of 은 값을 순회
+  const numbers = [1, 2, 3, 4]
+
+  // 속성
+  for (const number in numbers) {
+    console.log(number)
+  }
+
+  // 값
+  for (const number of numbers) {
+    console.log(number)
+  }
+
+
+  const myStr = 'apple'
+
+  for (const str in myStr) {
+    console.log(str)
+  }
+
+  for (const str of myStr) {
+    console.log(str)
+  }
+
+
+  //5. for...in 과 for...of 의 차이, 5-1. 0, 1, 2 출력, 5-2. a, b, c 출력
+  const arr = ['a', 'b', 'c']
+
+  // 속성
+  for (const i in arr) {
+    console.log(i)
+  }
+
+  // 값
+  for (const i of arr) {
+    console.log(i)
+  }
+
+  </script>
+</body>
+
+</html>

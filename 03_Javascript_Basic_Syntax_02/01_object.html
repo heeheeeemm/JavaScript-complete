@@ -1,0 +1,81 @@
+<!-- object.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 객체 구조
+    // - { key: value } 쌍(속성)의 모음
+    // - key는 문자열(띄어쓰기가 있으면 따옴표 필요), value는 모든 자료형 가능 (함수도 가능 = 메서드)
+    const user = {
+      name: 'Alice',
+      'key with space': true,
+      greeting: function () {
+        return 'hello'
+      }
+    }
+
+    // 2. 속성 참조 (조회, 추가, 수정, 삭제)
+    // 조회
+    console.log(user.name) // Alice
+    // console.log(user.'key with space') // SyntaxError: 띄어쓰기가 있는 key는 점 표기법 불가능
+    console.log(user['key with space']) // true
+
+    // 추가
+    user.address = 'korea'
+    console.log(user) // {name: 'Alice', key with space: true, greeting: ƒ, address: 'korea'}
+
+    // 수정
+    user.name = 'Bella'
+    console.log(user.name) // Bella
+
+    // 삭제
+    delete user.name
+    console.log(user) // {key with space: true, greeting: ƒ, address: 'korea'}
+
+    // 3. in 연산자
+    // - 객체에 해당 "key"가 있는지 확인
+    console.log('greeting' in user) // true
+    console.log('country' in user) // false
+
+    // 4. 메서드 호출
+    console.log(user.greeting()) // hello
+
+    // [심화 1] 객체 표기법
+    // 점 표기법: key 이름이 고정되어 있을 때 (user.name)
+    // 대괄호 표기법: key가 변수에 들어 있을 때 (user[key])
+    const member = { name: 'Alice', age: 30 }
+
+    for (let key in member) {
+      console.log(member.key) // undefined ('key'라는 이름의 속성을 찾음)
+      console.log(member[key]) // 'Alice', 30 (변수 key에 담긴 값으로 찾음)
+    }
+
+    // [심화 2] in 연산자의 함정
+    // - in은 물려받은(상속된) 속성까지 true로 판단함
+    const user2 = { name: 'Alice' }
+
+    console.log('name' in user2) // true
+
+    console.log('toString' in user2) // true (직접 만든 적 없지만 상속받은 속성)
+
+    // 자기 자신이 가진 속성만 확인하는 방법
+    // 방법 1 (Classic): .hasOwnProperty()
+    console.log(member.hasOwnProperty('name'))     // true
+    console.log(member.hasOwnProperty('toString')) // false (이건 조상님 꺼!)
+
+    // 방법 2 (ES2022): Object.hasOwn()
+    // Object.create() 로 객체를 생성한 경우, hasOwnProperty 속성이 없을 수 있음 => 에러
+    console.log(Object.hasOwn(member, 'name'))     // true
+    console.log(Object.hasOwn(member, 'toString')) // false
+  </script>
+</body>
+
+</html>

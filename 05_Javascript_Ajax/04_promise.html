@@ -1,0 +1,59 @@
+<!-- promise.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // [준비] Promise를 반환하는 함수
+    // - 1초 뒤 50% 확률로 성공(resolve) 또는 실패(reject)
+    // - 내부의 new Promise 문법은 참고용입니다. 지금은 "Promise를 반환하는 함수"로만 보면 됩니다.
+    // - 뒤에서 배울 fetch, axios도 이처럼 Promise를 반환합니다.
+    const getRandomData = function () {
+      return new Promise((resolve, reject) => {
+        const success = Math.random() > 0.5
+
+        setTimeout(() => {
+          if (success) {
+            resolve('데이터 도착!') // 성공 -> then
+          } else {
+            reject('에러 발생!') // 실패 -> catch
+          }
+        }, 1000)
+      })
+    }
+
+    // 1. 한 번 호출하기
+    getRandomData()
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error))
+
+    // 2. 3번 연속 호출하기 (then chaining)
+    // - then 안에서 다음 Promise를 return하면, 다음 then은 그 결과를 기다림
+    // - 1, 2, 3번 중 하나라도 실패하면 남은 then은 건너뛰고 catch로 이동
+    // ※ 1번과 동시에 실행하면 출력이 섞이므로, 1번을 주석 처리한 뒤 아래 주석을 풀어 실행
+    // getRandomData()
+    //   .then((data1) => {
+    //     console.log('1번째 성공:', data1)
+    //     return getRandomData()
+    //   })
+    //   .then((data2) => {
+    //     console.log('2번째 성공:', data2)
+    //     return getRandomData()
+    //   })
+    //   .then((data3) => {
+    //     console.log('3번째 성공:', data3)
+    //   })
+    //   .catch((error) => {
+    //     console.log('중간에 실패함:', error)
+    //   })
+  </script>
+</body>
+
+</html>

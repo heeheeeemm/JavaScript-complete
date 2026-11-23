@@ -1,0 +1,36 @@
+<!-- select.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 class="heading">DOM 선택</h1>
+  <a href="https://www.google.com/">google</a>
+  <p class="content">content1</p>
+  <p class="content">content2</p>
+  <p class="content">content3</p>
+  <ul>
+    <li>list1</li>
+    <li>list2</li>
+  </ul>
+  <script>
+    // 1. querySelector(selector)
+    // - CSS 선택자와 일치하는 "첫 번째" 요소 하나를 반환 (없으면 null)
+    console.log(document.querySelector('.heading')) // <h1 class="heading">
+    console.log(document.querySelector('.content')) // 첫 번째 <p> (content1)만 선택
+
+    // 2. querySelectorAll(selector)
+    // - CSS 선택자와 일치하는 "모든" 요소를 NodeList로 반환
+    // - NodeList는 배열과 비슷하지만 배열은 아님 (forEach는 가능, map/filter는 불가능)
+    console.log(document.querySelectorAll('.content')) // NodeList(3)
+    console.log(document.querySelectorAll('ul > li')) // NodeList(2), CSS의 자식 선택자도 그대로 사용 가능
+  </script>
+</body>
+
+</html>

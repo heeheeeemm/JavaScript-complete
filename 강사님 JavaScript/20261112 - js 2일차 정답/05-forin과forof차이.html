@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // for...in
+    // 1. 배열, 0 1 2 속성 출력 -> for in
+    const arr = ['a', 'b', 'c']
+
+
+    // 2. 객체, korea japan china 속성 출력 -> for in
+    const capitals = {
+      korea: '서울',
+      japan: '도쿄',
+      china: '베이징',
+    }
+
+    // for...of 중요!!!!
+    // 3. 배열, a b c 출력
+    for (const elem of arr) {
+      console.log(elem)
+    }
+
+
+    // 중요!!
+    // 4. 객체, 서울 도쿄 베이징 출력
+    // for of로 값을 출력할수있을까??? : 안된다
+    // 객체는 iterable이 아니다!!
+    // 해법 : for in 사용
+
+    for (const property in capitals) {
+      console.log(capitals[property])
+    }
+
+    const obj = {
+      2 : 'b',
+      1 : 'a',
+      c : '3',
+      b : '2',
+      a : '1',
+    }
+
+    for (const key in obj) {
+      console.log(key)
+      // Number와 String이 다르다!!
+      // Number는 작은 숫자부터 ---> 1, 2
+      // String은 삽입 순서대로 ---> c, b, a
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

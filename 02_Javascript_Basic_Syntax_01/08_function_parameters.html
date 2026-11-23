@@ -1,0 +1,61 @@
+<!-- function_parameters.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 기본 함수 매개변수
+    // - 인자를 전달하지 않거나 undefined를 전달하면 기본값 사용
+    const greeting = function (name = 'Anonymous') {
+     return `Hi ${name}`
+    }
+
+    console.log(greeting()) // Hi Anonymous
+    // console.log(greeting('jeeho'))
+
+    // 2. 나머지 매개변수
+    // - 정해지지 않은 개수의 인자를 "배열"로 모아서 받음
+    // - 하나만 쓸 수 있고, 반드시 마지막 매개변수여야 함
+    const myFunc = function (param1, param2, ...restParams) {
+      for (const foo of restParams) {
+        console.log(foo)
+      }
+      return [param1, param2, restParams]
+    }
+
+    console.log(myFunc(1, 2, 3, 4, 5)) // [1, 2, [3, 4, 5]]
+    console.log(myFunc(1, 2)) // [1, 2, []]
+
+    // 3. 매개변수 > 인자 (나머지는 undefined 할당)
+    const threeArgs = function (param1, param2, param3) {
+      return [param1, param2, param3]
+    }
+
+    console.log(threeArgs()) // [undefined, undefined, undefined]
+    console.log(threeArgs(1)) // [1, undefined, undefined]
+    console.log(threeArgs(2, 3)) // [2, 3, undefined]
+
+    // 4. 매개변수 < 인자 ( 넘치면 사용하지 않음 )
+    // - Python과 달리 개수가 맞지 않아도 에러가 나지 않음
+    const noArgs = function () {
+      return 0
+    }
+    console.log(noArgs(1, 2, 3)) // 0
+
+    const twoArgs = function (param1, param2) {
+      return [param1, param2]
+    }
+    console.log(twoArgs(1, 2, 3)) // [1, 2]
+
+
+  </script>
+</body>
+
+</html>

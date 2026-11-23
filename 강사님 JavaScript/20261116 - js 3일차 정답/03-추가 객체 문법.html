@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 단축 속성
+    const name = 'bogeom'
+    const age = 21
+
+    const user = {
+      name,
+      age
+    }
+
+    console.log(user)
+
+
+    // 2. 단축 메서드 : function() 키워드 생략
+
+    const myObj = {
+      myFunc() {
+        return 'hello'
+      }
+    }
+
+    console.log(myObj.myFunc())
+
+
+    // 3. 계산된 속성
+    // python -> input, c-> scanf, c++ -> cin, js -> prompt 
+
+    const product = prompt('물건의 이름을 입력하세요')
+    const prefix = 'my'
+    const suffix = 'property'
+
+    const bag = {
+      [product]: 5,
+      [prefix + suffix]: 'value'
+    }
+
+    console.log(bag)
+
+
+    // 4. 구조 분해 할당
+    const userInfo = {
+      firstName: 'Alice',
+      userId: 'alice123',
+      email: 'alice123@gmail.com'
+    }
+
+    // 구조분해할당이 쓰이는 경우 두가지
+    // 1. 변수에 객체의 값(value)을 할당할때
+    const {firstName, userId, email} = userInfo
+    console.log(firstName, userId, email)
+
+
+    // 2. 함수의 parameter로 쓰일때
+    // 특징1. 매개변수의 순서가 상관없다
+    // 특징2. 인자가 없는경우는 undefined
+
+    function printInfo({age, city, name}) {
+      console.log(`이름: ${name}, 나이: ${age}, 사는곳: ${city}`)
+    }
+
+    const person = {
+      name: 'bogeom',
+      city: 'busan'
+    }
+
+    printInfo(person) // argument(인자)
+
+
+    // 5. 전개 구문
+    const obj = {b:2, c:3}
+    const newObj = {a:1, ...obj, d:4}
+
+    console.log(newObj)
+
+    
+
+    // 6. 유용한 객체 메서드
+    const profile = {
+      name: 'Alice',
+      age: 30
+    }
+
+    // 속성 : Object.keys
+    // 값 : Object.values
+
+    console.log(Object.keys(profile))
+    console.log(Object.values(profile))
+
+
+
+  </script>
+</body>
+
+</html>

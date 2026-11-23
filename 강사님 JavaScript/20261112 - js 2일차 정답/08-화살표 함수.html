@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arrow1 = function (name) {
+      return `hello, ${name}`
+    }
+
+    // js에서 화살표함수는 왜 중요할까??
+    // js의 꽃 : 비동기 통신에서 화살표함수가 콜백함수로 쓰인다
+
+    // 1단계 function 키워드 삭제 (화살표로 바뀐다)
+    const arrow2 = (name) => {return `hello, ${name}`}
+
+    // 2단계 소괄호 제거 (인자가 1개일 경우 소괄호를 삭제)
+    const arrow3 = name => {return `hello, ${name}`}
+
+    // 3단계 return 제거 (반환값이 1개일 경우 중과호와 return 제거)
+    const arrow4 = name => `hello, ${name}`
+
+    console.log(arrow4('bogeom'))
+
+
+  </script>
+</body>
+
+</html>

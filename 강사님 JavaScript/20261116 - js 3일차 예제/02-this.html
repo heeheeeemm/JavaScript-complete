@@ -1,0 +1,90 @@
+<!-- this-keyword.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Method & this 예시
+    const person = {
+      name: 'Alice',
+      greeting: function () {
+        return `Hello my name is ${this.name}`
+      },
+    }
+
+    console.log(person.greeting()) 
+
+
+    // 1.1 단순 호출
+    // window객체와 document객체의 차이
+    // window는 최상위 객체 window.document
+    // document는 웹페이지의 HTML
+
+    const myFunc = function() {
+      return this // this는 window
+    }
+
+    console.log(myFunc())
+    console.log(myFunc().document)
+
+
+    // 1.2 메서드 호출
+    // 객체 안에 함수
+    const myObj = {
+      data : 1,
+      myFunc() {
+        return this // this는 myObj
+      }
+    }
+
+    console.log(myObj.myFunc())
+
+
+    // 2. 중첩된 함수
+    // 2.1 일반 함수
+
+    // forEach : 함수 -> 함수의 인자로 function(number) 함수가 
+
+    const myObj2 = {
+      numbers : [1, 2, 3],
+      myFunc() {
+        this.numbers.forEach(function(number) {
+          console.log(this) // 문제가 있다............중첩함수의 this가 window를 가리킴 !!
+          // 문제해결 -> 화살표 함수
+        })
+      }
+    }
+
+
+    // 메서드호출
+    myObj2.myFunc()
+
+
+
+    // 2.2 화살표 함수
+    const myObj3 = {
+      numbers : [1, 2, 3],
+      myFunc() {
+        this.numbers.forEach((number) => {
+          console.log(this) // this는 myObj3
+        })
+      }
+    }
+
+    // 콜백함수?? : 함수의 인자로 함수가 들어가면 콜백함수
+    // 결론 : 콜백함수에서는 반드시 화살표 함수를 사용해야 한다
+
+
+
+
+  </script>
+</body>
+
+</html>

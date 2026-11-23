@@ -1,0 +1,34 @@
+<!-- json.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // JSON: JavaScript 객체와 비슷한 형식의 "문자열"
+    // - 서버와 데이터를 주고받을 때 사용하므로, 객체 <-> 문자열 변환이 필요
+    const jsObject = {
+      coffee: 'Americano',
+      iceCream: 'Cookie and cream'
+    }
+
+    // 1. Object -> JSON (JSON.stringify)
+    const objToJson = JSON.stringify(jsObject)
+    console.log(objToJson)  // {"coffee":"Americano","iceCream":"Cookie and cream"}
+    console.log(typeof objToJson)  // string (key도 큰따옴표로 감싼 문자열)
+
+    // 2. JSON -> Object (JSON.parse)
+    const jsonToObj = JSON.parse(objToJson)
+    console.log(jsonToObj)  // { coffee: 'Americano', iceCream: 'Cookie and cream' }
+    console.log(typeof jsonToObj)  // object
+
+  </script>
+</body>
+
+</html>

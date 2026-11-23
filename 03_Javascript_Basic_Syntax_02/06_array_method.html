@@ -1,0 +1,37 @@
+<!-- array_method.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 배열 기본 조작 메서드
+    // - 네 메서드 모두 원본 배열을 직접 수정함
+    const names = ['Alice', 'Bella', 'Cathy']
+
+    // 1. push: 배열 끝에 추가, 새로운 길이를 반환
+    names.push('Dan')
+    console.log(names) // ['Alice', 'Bella', 'Cathy', 'Dan']
+
+    // 2. pop: 배열 끝 요소를 제거하고, 제거한 요소를 반환
+    console.log(names.pop()) // Dan
+    console.log(names) // ['Alice', 'Bella', 'Cathy']
+
+    // 3. unshift: 배열 앞에 추가 (모든 요소를 한 칸씩 밀어야 해서 배열이 클수록 느림)
+    names.unshift('Eric')
+    console.log(names) // ['Eric', 'Alice', 'Bella', 'Cathy']
+
+    // 4. shift: 배열 앞 요소를 제거하고, 제거한 요소를 반환
+    console.log(names.shift()) // Eric
+    console.log(names) // ['Alice', 'Bella', 'Cathy']
+
+  </script>
+</body>
+
+</html>

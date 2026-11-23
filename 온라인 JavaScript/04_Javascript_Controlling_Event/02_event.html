@@ -1,0 +1,43 @@
+<!-- event.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+
+  <button id="btn">버튼</button>
+
+  <script>
+    // event 객체
+    // - 이벤트가 발생하면 브라우저가 이벤트 정보를 담은 객체를 만들어 핸들러의 첫 번째 인자로 넘겨줌
+
+    // 1. 버튼 선택
+    const btn = document.querySelector('#btn')
+
+    // 2. 이벤트 핸들러
+    const detectClick = function (event) {
+      // console.log(event)
+      // console.log(event.type)
+      // console.log(event.x, event.y)
+      console.log(event.target)
+      console.log(event.currentTarget)
+      console.log(this)
+    }
+
+    // 3. 버튼에 이벤트 핸들러를 등록
+    btn.addEventListener('click', detectClick)
+  </script>
+</body>
+
+</html>
