@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <img src="{% static "cat.png" %}" alt="구름이">
+
+    <hr>
+
+    <h1>안녕하세요 {{user.username}} 님</h1>
+    <h3>박보검님의 게시판입니다.</h3>
+
+    <hr>
+    
+    {% comment %} 사용자 인증이 되어 있을 때(로그인 되었을 때) {% endcomment %}
+    {% if request.user.is_authenticated %}
+
+    <a href="{% url "accounts:profile" user.username %}">내 프로필</a>
+
+    
+    
+    </h2>
+    <hr>
+    <a href="{% url "articles:create" %}"> 게시글 생성 </a>
+    <hr>
+  
+    <form action="{% url "accounts:logout" %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="로그 아웃">
+    </form>
+
+    <form action="{% url "accounts:delete" %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="회원 탈퇴">
+    </form>
+    
+    <hr>
+    <a href="{% url "accounts:update" %}">회원 정보 수정</a>
+    <hr>
+
+    {% else %}
+        <a href="{% url "accounts:login" %}">로그인</a>
+        <a href="{% url "accounts:signup" %}">회원 가입</a>
+    {% endif %}
+
+
+    <article id="article-container">
+        {% comment %} context의 ariticles인 key값 {% endcomment %}
+        {% for article in articles %}
+            <p>작성자 : 
+                <a href="{% url "accounts:profile" article.user.username%}">
+                    {{article.user}}
+                </a>
+            </p>
+
+            <p>글 번호 : {{article.pk}}</p>
+
+            {% comment %} a태그 vs form태그
+            단순한 get요청이다 : a태그
+            데이터를 보내면서 get요청 : form 태그
+            데이터를 보내면서 post요청 : form 태그 {% endcomment %}
+            <a href="{% url "articles:detail" article.pk%}">    
+                <p>글 제목 : {{article.title}}</p>
+            </a>    
+
+            <p>글 내용 : {{article.content}}</p>
+
+            {% comment %} data- : 사용자정의 데이터속성 {% endcomment %}
+            <form data-article-id="{{article.pk}}">
+                {% csrf_token %}
+                {% comment %} 이미 좋아요 눌렀으면 좋아요 취소버튼이 눈에 보여야 된다(클라이언트에서 처리) {% endcomment %}
+                {% if request.user in article.like_users.all %}
+                    <input type="submit" value="좋아요 취소" id="like-{{article.pk}}">
+                {% else %}
+                    <input type="submit" value="좋아요" id="like-{{article.pk}}">
+                {% endif %}
+            </form>
+
+            <hr>
+
+        {% endfor %}
+    </article>
+
+    {% comment %} axios CDN {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // 1. querySelector
+        const articleContainer = document.querySelector('#article-container')
+        // csrf 토큰 (공식문서)
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        // 2. 콜백함수
+
+        const handleArticleLike = async function(event) {
+            // submit할때 새로고침 되지 않게
+            event.preventDefault()
+            // console.log(event)
+            const articleId = event.target.dataset.articleId
+            try {
+                const response = await axios ({
+                    method: 'post',
+                    url: `/articles/${articleId}/likes/`,
+                    headers: {'X-CSRFToken': csrftoken},
+                })
+                // console.log(response)
+                const isLiked = response.data.is_liked
+                const likeBtn = document.querySelector(`#like-${articleId}`)
+
+                if (isLiked === true) {
+                    likeBtn.value = "좋아요 취소"
+                }
+                else {
+                    likeBtn.value = "좋아요"
+                }
+            }
+            catch(error){
+                console.log(error)
+            }
+        }
+
+        // 3. 이벤트 리스너
+        articleContainer.addEventListener('submit', handleArticleLike)
+    </script>
+
+
+
+
+{% endblock content %}

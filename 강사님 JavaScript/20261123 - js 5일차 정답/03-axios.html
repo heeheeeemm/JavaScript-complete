@@ -1,0 +1,66 @@
+<!-- axios.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<!-- AJAX의 주된 목적은 "새로고침 없이 비동기적으로 서버와 통신하기 위해서" 입니다. -->
+<!-- Axios는 AJAX를 쉽게 사용하게 해주는 '라이브러리'입니다 -->
+<body>
+ 
+  <!-- axios 사용할수 있는 방법 2가지
+  1. CDN
+  2. nodes.js(런타임)설치하고 npm명령어로 설치 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 1. Promise 객체를 변수에 할당
+    const promiseObj = axios({
+      method: 'get', // HTTP method -> (GET, POST, PUT, DELETE)
+      url: 'https://api.thecatapi.com/v1/images/search' // 저작권 없는 고양이 사진
+    })
+
+    // console.log(promiseObj) // Promise object
+    // Promise는 then, catch로 처리
+    // .then() : 요청이 성공 했을 때
+    // .catch() : 요청이 실패 했을 때
+    promiseObj
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    // url로 get요청 보내고, 응답이 도착할때까지 걸리는 시간
+    // 비동기 통신
+    console.log('보검이 하이')
+
+    // 2. 변수 선언 없이
+
+    axios({
+      method: 'get',
+      url: 'https://api.thecatapi.com/v1/images/search'
+    })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    console.log('안녕하세요')
+
+    
+
+  </script>
+
+</body>
+
+</html>

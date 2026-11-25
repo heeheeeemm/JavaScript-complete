@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+</head>
+
+<body>
+
+ <h1>로또 추천 번호</h1>
+
+ <button id="btn">행운 번호 받기</button>
+
+ <div></div>
+
+  <!-- CDN? -->
+ <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+ 
+ <script>
+
+   const h1Tag = document.querySelector('h1')   
+   const btn = document.querySelector('#btn')     
+   const divTag = document.querySelector('div')     
+
+   // 로또 번호를 생성하고 화면에 표시하는 함수
+   const getLottery = function (event) {
+    // 1. 1번부터 45번까지 번호(lodash)
+
+    // 2. 6개의 숫자 무작위로 뽑기(lodash)
+
+    // 3. ul태그 생성(createElement)
+
+    // 4. forEach로 6개 숫자 순회
+    // 4-1. ul태그의 자식태그로 li태그 추가
+
+    // 5. div태그의 자식태그로 ul태그 추가
+
+   }
+
+   // 버튼을 클릭하면 getLottery 함수가 실행
+   btn.addEventListener('click', getLottery)
+ </script>
+</body>
+
+</html>
